@@ -1,5 +1,6 @@
 package br.com.antonio.bookio.services;
 
+import br.com.antonio.bookio.dtos.CategoryDTO;
 import br.com.antonio.bookio.model.Category;
 import br.com.antonio.bookio.repositorys.CategoryRepository;
 import br.com.antonio.bookio.services.exceptions.ObjectNotFoundException;
@@ -37,5 +38,12 @@ public class CategoryService {
   public Category create(Category category) {
     category.setId(null);
     return repository.save(category);
+  }
+
+  public Category update(Long id, CategoryDTO upCategory) {
+    Category obj = findById(id);
+    obj.setName(upCategory.getName());
+    obj.setDescription(upCategory.getDescription());
+    return repository.saveAndFlush(obj);
   }
 }

@@ -4,6 +4,7 @@ import br.com.antonio.bookio.dtos.CategoryDTO;
 import br.com.antonio.bookio.model.Category;
 import br.com.antonio.bookio.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -43,5 +44,11 @@ public class CategoryController {
     Category categorySaved = service.create(newCategory);
     URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categorySaved.getId()).toUri();
     return ResponseEntity.created(uri).build();
+  }
+
+  @PutMapping(value = "/{id}")
+  public ResponseEntity<CategoryDTO> update(@PathVariable("id") Long id, @RequestBody CategoryDTO upCategory) {
+    Category category = service.update(id, upCategory);
+    return ResponseEntity.status(HttpStatus.OK).body(new CategoryDTO(category));
   }
 }
