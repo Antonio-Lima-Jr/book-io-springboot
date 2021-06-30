@@ -2,6 +2,7 @@ package br.com.antonio.bookio.domain.services;
 
 import br.com.antonio.bookio.domain.model.Category;
 import br.com.antonio.bookio.domain.repositorys.CategoryRepository;
+import br.com.antonio.bookio.domain.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,9 @@ public class CategoryService {
 
   public Category findById(Long id) {
     Optional<Category> obj = repository.findById(id);
-    return obj.orElse(null);
+    return obj.orElseThrow(
+        () -> new ObjectNotFoundException(
+            "Objeto não encontrado ID: " + id + ", Tipo: " + Category.class.getName())
+    );
   }
 }
