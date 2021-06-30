@@ -46,4 +46,9 @@ public class CategoryService {
     obj.setDescription(upCategory.getDescription());
     return repository.saveAndFlush(obj);
   }
+
+  public void delete(Long id) {
+    findById(id);
+    repository.deleteById(id);
+  }
 }
