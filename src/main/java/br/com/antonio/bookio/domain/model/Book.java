@@ -1,5 +1,6 @@
 package br.com.antonio.bookio.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,6 +30,7 @@ public class Book implements Serializable {
   private String description;
   @NonNull
   private String book;
+  @JsonIgnore
   @ManyToOne()
   private Category category;
 
