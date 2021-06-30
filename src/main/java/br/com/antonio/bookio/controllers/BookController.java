@@ -4,6 +4,7 @@ import br.com.antonio.bookio.dtos.BookDTO;
 import br.com.antonio.bookio.model.Book;
 import br.com.antonio.bookio.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,5 +35,11 @@ public class BookController {
     List<Book> bookList = service.findAll(idCat);
     List<BookDTO> bookDTOS = bookList.stream().map(BookDTO::new).collect(Collectors.toList());
     return ResponseEntity.ok().body(bookDTOS);
+  }
+
+  @PutMapping(value = "/{id}")
+  public ResponseEntity<Book> update(@PathVariable("id") Long id, @RequestBody Book book) {
+    Book bookCreated = service.update(id, book);
+    return new ResponseEntity<>(bookCreated, HttpStatus.OK);
   }
 }
