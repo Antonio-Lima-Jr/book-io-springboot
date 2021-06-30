@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,5 +43,12 @@ public class BookController {
   public ResponseEntity<Book> update(@PathVariable("id") Long id, @RequestBody Book book) {
     Book bookCreated = service.update(id, book);
     return new ResponseEntity<>(bookCreated, HttpStatus.OK);
+  }
+
+  @PostMapping
+  public ResponseEntity<Book> create(@RequestParam(value = "category", defaultValue = "0") Long idCat, @RequestBody Book book) {
+    Book newObj = service.create(idCat, book);
+    URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/book/{id}").buildAndExpand(newObj.getId()).toUri();
+    return ResponseEntity.created(uri).build();
   }
 }

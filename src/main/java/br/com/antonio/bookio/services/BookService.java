@@ -66,4 +66,11 @@ public class BookService {
   private Number paramNotNull(Number oldBook, Number newBook) {
     return newBook != null ? newBook : oldBook;
   }
+
+  public Book create(Long idCat, Book book) {
+    book.setId(null);
+    Category category = categoryService.findById(idCat);
+    book.setCategory(category);
+    return bookRepository.save(book);
+  }
 }
