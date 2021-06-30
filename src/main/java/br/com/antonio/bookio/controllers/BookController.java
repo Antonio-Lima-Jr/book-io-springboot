@@ -1,13 +1,14 @@
 package br.com.antonio.bookio.controllers;
 
+import br.com.antonio.bookio.dtos.BookDTO;
 import br.com.antonio.bookio.model.Book;
 import br.com.antonio.bookio.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Class Description.
@@ -26,5 +27,12 @@ public class BookController {
   public ResponseEntity<Book> findById(@PathVariable("id") Long id) {
     Book book = service.findById(id);
     return ResponseEntity.ok().body(book);
+  }
+
+  @GetMapping
+  public ResponseEntity<List<BookDTO>> findAll(@RequestParam(value = "categoria", defaultValue = "0") Long idCat) {
+    List<Book> bookList = service.findAll(idCat);
+    List<BookDTO> bookDTOS = bookList.stream().map(BookDTO::new).collect(Collectors.toList());
+    return ResponseEntity.ok().body(bookDTOS);
   }
 }

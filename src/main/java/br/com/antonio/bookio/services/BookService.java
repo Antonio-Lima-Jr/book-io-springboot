@@ -6,6 +6,7 @@ import br.com.antonio.bookio.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -19,11 +20,17 @@ import java.util.Optional;
 public class BookService {
   @Autowired
   BookRepository bookRepository;
+  @Autowired
+  CategoryService categoryService;
 
   public Book findById(Long id) {
     Optional<Book> bookById = bookRepository.findById(id);
     return bookById.orElseThrow(() -> new ObjectNotFoundException(
         "Objeto não encontrado ID: " + id + ", Tipo: " + Book.class.getName())
     );
+  }
+
+  public List<Book> findAll(Long idCat) {
+    return categoryService.findById(idCat).getBooks();
   }
 }
