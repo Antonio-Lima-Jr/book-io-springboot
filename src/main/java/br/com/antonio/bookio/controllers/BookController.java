@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
  * @project bookio
  * @created 30/06/2021 - 00:14
  */
+@CrossOrigin("*")
 @RestController
 @RequestMapping(value = "/book")
 public class BookController {
