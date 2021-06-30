@@ -33,4 +33,9 @@ public class CategoryService {
   public List<Category> findAll() {
     return repository.findAll();
   }
+
+  public Category create(Category category) {
+    category.setId(null);
+    return repository.save(category);
+  }
 }

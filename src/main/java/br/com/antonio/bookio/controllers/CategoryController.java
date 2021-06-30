@@ -5,11 +5,10 @@ import br.com.antonio.bookio.model.Category;
 import br.com.antonio.bookio.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,5 +36,12 @@ public class CategoryController {
     List<Category> categoryList = service.findAll();
     List<CategoryDTO> categoryDTOList = categoryList.stream().map(CategoryDTO::new).collect(Collectors.toList());
     return ResponseEntity.ok().body(categoryDTOList);
+  }
+
+  @PostMapping
+  public ResponseEntity<Category> create(@RequestBody Category newCategory) {
+    Category categorySaved = service.create(newCategory);
+    URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categorySaved.getId()).toUri();
+    return ResponseEntity.created(uri).build();
   }
 }
