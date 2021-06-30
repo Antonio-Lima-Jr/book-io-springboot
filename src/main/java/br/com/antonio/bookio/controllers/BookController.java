@@ -51,4 +51,10 @@ public class BookController {
     URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/book/{id}").buildAndExpand(newObj.getId()).toUri();
     return ResponseEntity.created(uri).build();
   }
+
+  @DeleteMapping(value = "/{id}")
+  public ResponseEntity<Void> delete(@PathVariable("id") Long idBook) {
+    service.delete(idBook);
+    return ResponseEntity.noContent().build();
+  }
 }
