@@ -3,6 +3,7 @@ package br.com.antonio.bookio.services;
 import br.com.antonio.bookio.dtos.CategoryDTO;
 import br.com.antonio.bookio.model.Category;
 import br.com.antonio.bookio.repositorys.CategoryRepository;
+import br.com.antonio.bookio.services.exceptions.DataIntegrityViolationException;
 import br.com.antonio.bookio.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,6 +50,10 @@ public class CategoryService {
 
   public void delete(Long id) {
     findById(id);
-    repository.deleteById(id);
+    try {
+      repository.deleteById(id);
+    } catch (org.springframework.dao.DataIntegrityViolationException e) {
+      throw new DataIntegrityViolationException("Objeto não pode ser deletado! possui livros associados");
+    }
   }
 }
