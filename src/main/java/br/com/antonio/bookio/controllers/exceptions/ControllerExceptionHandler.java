@@ -1,6 +1,6 @@
-package br.com.antonio.bookio.domain.controllers.exceptions;
+package br.com.antonio.bookio.controllers.exceptions;
 
-import br.com.antonio.bookio.domain.services.exceptions.ObjectNotFoundException;
+import br.com.antonio.bookio.services.exceptions.ObjectNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

@@ -1,6 +1,6 @@
-package br.com.antonio.bookio.domain.repositorys;
+package br.com.antonio.bookio.repositorys;
 
-import br.com.antonio.bookio.domain.model.Book;
+import br.com.antonio.bookio.model.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

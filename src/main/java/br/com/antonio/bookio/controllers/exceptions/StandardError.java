@@ -1,4 +1,4 @@
-package br.com.antonio.bookio.domain.controllers.exceptions;
+package br.com.antonio.bookio.controllers.exceptions;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,7 +1,7 @@
-package br.com.antonio.bookio.domain.controllers;
+package br.com.antonio.bookio.controllers;
 
-import br.com.antonio.bookio.domain.model.Category;
-import br.com.antonio.bookio.domain.services.CategoryService;
+import br.com.antonio.bookio.model.Category;
+import br.com.antonio.bookio.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

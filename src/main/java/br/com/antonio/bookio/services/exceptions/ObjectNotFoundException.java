@@ -1,4 +1,4 @@
-package br.com.antonio.bookio.domain.services.exceptions;
+package br.com.antonio.bookio.services.exceptions;
 
 /**
  * Class Description.

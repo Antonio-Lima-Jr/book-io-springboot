@@ -1,8 +1,8 @@
-package br.com.antonio.bookio.domain.services;
+package br.com.antonio.bookio.services;
 
-import br.com.antonio.bookio.domain.model.Category;
-import br.com.antonio.bookio.domain.repositorys.CategoryRepository;
-import br.com.antonio.bookio.domain.services.exceptions.ObjectNotFoundException;
+import br.com.antonio.bookio.model.Category;
+import br.com.antonio.bookio.repositorys.CategoryRepository;
+import br.com.antonio.bookio.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

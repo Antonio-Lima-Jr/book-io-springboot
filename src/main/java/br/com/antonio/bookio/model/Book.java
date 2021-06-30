@@ -1,4 +1,4 @@
-package br.com.antonio.bookio.domain.model;
+package br.com.antonio.bookio.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
