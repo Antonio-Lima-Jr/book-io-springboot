@@ -1,8 +1,10 @@
 package br.com.antonio.bookio.model;
 
 import lombok.*;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.List;
 
@@ -24,8 +26,11 @@ public class Category implements Serializable {
   @GeneratedValue(strategy = GenerationType.AUTO)
   @EqualsAndHashCode.Include
   private Long id;
-  @NonNull
+  @NotEmpty(message = "Campo NOME é requerido")
+  @Length(min = 2, max = 100, message = "O campo nome deve ter entre 2 a 100 caracteres")
   private String name;
+  @NotEmpty(message = "Campo DESCRIÇÃO é requerido")
+  @Length(min = 2, max = 200, message = "O campo descrição deve ter entre 2 a 200 caracteres")
   private String description;
   @OneToMany(mappedBy = "category")
   private List<Book> books;
