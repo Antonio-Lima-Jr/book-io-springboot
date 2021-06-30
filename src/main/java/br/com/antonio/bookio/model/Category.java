@@ -26,13 +26,13 @@ public class Category implements Serializable {
   private Long id;
   @NonNull
   private String name;
-  private String Description;
+  private String description;
   @OneToMany(mappedBy = "category")
   private List<Book> books;
 
   public Category(@NonNull String name, String description) {
     this.name = name;
-    Description = description;
+    this.description = description;
   }
 
   public Category() {
